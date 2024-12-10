@@ -1,8 +1,16 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { ref,watchEffect,defineEmits, watch } from 'vue';
 import Recipe from '../classes/Recipe';
 
 const emits = defineEmits(['search']);
+var search = ref("");
+var difficulty = ref("-1");
+var sort = ref("0")
+
+watchEffect(()=>{
+    emits('search',{txt:search.value, difficulty:difficulty.value, sort:sort.value});
+    console.log("ok")
+})
 </script>
 
 <template>
@@ -14,17 +22,17 @@ const emits = defineEmits(['search']);
                         <input type="search" class="form-control" id="searchRecipe" placeholder="Keress receptet...." v-model="search">
                     </div>
                     <div class="form-group col-3 fe">
-                        <select id="inputState" class="form-control">
-                            <option selected>Minden nehézség</option>
-                            <option>Könnyű</option>
-                            <option>Közepes</option>
-                            <option>Nehéz</option>
+                        <select id="inputState" class="form-control" v-model="difficulty">
+                            <option selected value="-1">Minden nehézség</option>
+                            <option value="0">Könnyű</option>
+                            <option value="1">Közepes</option>
+                            <option value="2">Nehéz</option>
                         </select>
                     </div>
                     <div class="form-group col-3 fe">
-                        <select id="inputState" class="form-control">
-                            <option selected>Elkészítési idő szerint</option>
-                            <option>ABC szerint</option>
+                        <select id="inputState" class="form-control" v-model="sort">
+                            <option value="0" selected>Elkészítési idő szerint</option>
+                            <option value="1">ABC szerint</option>
                         </select>
                     </div>
                 </form>
