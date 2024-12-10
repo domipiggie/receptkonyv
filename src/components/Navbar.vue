@@ -29,5 +29,4 @@
         margin-left: 20%;
         width: 100px;
     }
-    
 </style>

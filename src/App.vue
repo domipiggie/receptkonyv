@@ -2,6 +2,7 @@
 import {recipes} from './data/recipes';
 import Recipe from './classes/Recipe';
 import Navbar from './components/Navbar.vue';
+import Card from './components/Card.vue';
 
 import { ref } from 'vue'
 
@@ -21,6 +22,9 @@ console.log(recipeList.value);
     <main>
         <section>
             <Navbar />
+        </section>
+        <section>
+            <Card :recept="recept"/>
         </section>
     </main>
     <footer>
