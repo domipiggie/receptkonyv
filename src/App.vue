@@ -43,7 +43,7 @@ const search = (options) => {
             <Navbar />
         </section>
         <section>
-            <Card :recept="recept"/>
+            <Card :recept="recipeList"/>
         </section>
     </main>
     <footer>
