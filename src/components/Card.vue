@@ -20,9 +20,11 @@ const getImgUrl = (img) => {
 </script>
 
 <template>
-    <div v-for="recept in recept" class="col-4 cards">
+    <div class="container">
+        <div class="row">
+            <div v-for="recept in recept" class="col-4 cards">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" :src="getImgUrl(recept.img)">
+            <img class="card-img-top" :src="getImgUrl(recept.img)" width="300" height="200">
             <div class="card-body">
                 <h5 class="card-title">{{ recept.name }}</h5>
                 <p class="card-text">Elkészítési idő: {{ recept.prepTime }} perc</p>
@@ -35,11 +37,18 @@ const getImgUrl = (img) => {
             </div>
         </div>
     </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
 .cards {
     display: flex;
+    margin: 20px 0px;
+}
+
+.card img{
+    object-fit: cover;
 }
 
 .card-body a {
