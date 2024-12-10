@@ -4,6 +4,7 @@ import Recipe from './classes/Recipe';
 import Navbar from './components/Navbar.vue';
 import Card from './components/Card.vue';
 import Search from './components/Search.vue';
+import NewRecipe from './components/NewRecipe.vue';
 
 import { ref } from 'vue'
 
@@ -48,6 +49,9 @@ const search = (options) => {
         </section>
         <section>
             <Card :recept="filteredRecipes"/>
+        </section>
+        <section>
+            <NewRecipe :receptlist="recipeList"/>
         </section>
     </main>
     <footer>
