@@ -3,6 +3,7 @@ import {recipes} from './data/recipes';
 import Recipe from './classes/Recipe';
 import Navbar from './components/Navbar.vue';
 import Card from './components/Card.vue';
+import Search from './components/Search.vue';
 
 import { ref } from 'vue'
 
@@ -41,6 +42,9 @@ const search = (options) => {
     <main>
         <section>
             <Navbar />
+        </section>
+        <section>
+            <Search />
         </section>
         <section>
             <Card :recept="filteredRecipes"/>
