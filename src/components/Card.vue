@@ -12,12 +12,16 @@ const difficultyList = ['Könnyű', 'Közepes', 'Nehéz'];
 const showDetails = (id) => {
     emits('showDetails',id);
 }
+
+const getImgUrl = (img) => {
+    return new URL(img, import.meta.url.replace('components','assets')).href;
+}
 </script>
 
 <template>
     <div v-for="recept in recept">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="">
+            <img class="card-img-top" :src="getImgUrl(recept.img)">
             <div class="card-body">
                 <h5 class="card-title">{{ recept.name }}</h5>
                 <p class="card-text">Elkészítési idő: {{ recept.prepTime }} perc</p>
