@@ -15,21 +15,35 @@ recipes.forEach((recipe)=>{
 var filteredRecipes = ref(recipeList.value);
 
 const search = (options) => {
-    if (options.txt.trim().length == 0){
-        filteredRecipes.value = recipeList.value;
-        return;
-    }
-    if (options.txt.trim().length < 3){
-        return;
-    }
-
     filteredRecipes.value = [];
 
+    if (options.txt.trim().length < 3){
+        filter("", options.difficulty);
+        order(options.sort);
+        console.log(filteredRecipes.value)
+        return;
+    }
+
+    filter(options.txt, options.difficulty);
+    order(options.sort);
+}
+
+const filter = (txt, difficulty) => {
     recipeList.value.forEach((recipe) => {
-        if (recipe.name.toLowerCase().trim().contains(options.txt.toLowerCase().trim())){
-            if (recipe.difficulty == options.difficulty){
+        if (recipe.name.toLowerCase().trim().includes(txt.toLowerCase().trim())){
+            if (recipe.difficulty == difficulty || difficulty == "-1"){
                 filteredRecipes.value.push(recipe);
             }
+        }
+    })
+}
+
+const order = (by) => {
+    filteredRecipes.value = filteredRecipes.value.sort((a,b) => {
+        if (by == "0"){
+            return a.prepTime - b.prepTime;
+        } else {
+            return a.name.localeCompare(b.name);
         }
     })
 }
@@ -44,7 +58,7 @@ const search = (options) => {
             <Navbar />
         </section>
         <section>
-            <Search />
+            <Search @search="search" />
         </section>
         <section>
             <Card :recept="filteredRecipes"/>
