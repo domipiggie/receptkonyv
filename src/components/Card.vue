@@ -9,6 +9,9 @@ const emits = defineEmits(['showDetails']);
 
 const difficultyList = ['Könnyű', 'Közepes', 'Nehéz'];
 
+const showDetails = (id) => {
+    emits('showDetails',id);
+}
 </script>
 
 <template>
@@ -21,7 +24,7 @@ const difficultyList = ['Könnyű', 'Közepes', 'Nehéz'];
                 <p class="card-text" v-if="recept.difficulty == 0">{{ difficultyList[0] }}</p>
                 <p class="card-text" v-if="recept.difficulty == 1">{{ difficultyList[1] }}</p>
                 <p class="card-text" v-if="recept.difficulty == 2">{{ difficultyList[2] }}</p>
-                <a href="#" class="btn btn-primary">Részletek</a>
+                <a href="#" class="btn btn-primary" @click.prevent="showDetails(recept.id)">Részletek</a>
             </div>
         </div>
     </div>
