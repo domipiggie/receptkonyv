@@ -7,12 +7,31 @@ import Card from './components/Card.vue';
 import { ref } from 'vue'
 
 var recipeList = ref([]);
-
 recipes.forEach((recipe)=>{
     recipeList.value.push(new Recipe(recipe));
 })
 
-console.log(recipeList.value);
+var filteredRecipes = ref(recipeList.value);
+
+const search = (options) => {
+    if (options.txt.trim().length == 0){
+        filteredRecipes.value = recipeList.value;
+        return;
+    }
+    if (options.txt.trim().length < 3){
+        return;
+    }
+
+    filteredRecipes.value = [];
+
+    recipeList.value.forEach((recipe) => {
+        if (recipe.name.toLowerCase().trim().contains(options.txt.toLowerCase().trim())){
+            if (recipe.difficulty == options.difficulty){
+                filteredRecipes.value.push(recipe);
+            }
+        }
+    })
+}
 </script>
 
 <template>
