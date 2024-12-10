@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue';
 import Recipe from '../classes/Recipe';
+import { recipes } from '../data/recipes';
 
 const props = defineProps({
     recept: Recipe
@@ -23,20 +24,39 @@ const getImgUrl = (img) => {
     <div class="container">
         <div class="row">
             <div v-for="recept in recept" class="col-4 cards">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" :src="getImgUrl(recept.img)" width="300" height="200">
-            <div class="card-body">
-                <h5 class="card-title">{{ recept.name }}</h5>
-                <p class="card-text">Elkészítési idő: {{ recept.prepTime }} perc</p>
-                <div>
-                    <p class="card-text d1" v-if="recept.difficulty == 0">{{ difficultyList[0] }}</p>
-                    <p class="card-text d2" v-if="recept.difficulty == 1">{{ difficultyList[1] }}</p>
-                    <p class="card-text d3" v-if="recept.difficulty == 2">{{ difficultyList[2] }}</p>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" :src="getImgUrl(recept.img)" width="300" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recept.name }}</h5>
+                        <p class="card-text">Elkészítési idő: {{ recept.prepTime }} perc</p>
+                        <div>
+                            <p class="card-text d1" v-if="recept.difficulty == 0">{{ difficultyList[0] }}</p>
+                            <p class="card-text d2" v-if="recept.difficulty == 1">{{ difficultyList[1] }}</p>
+                            <p class="card-text d3" v-if="recept.difficulty == 2">{{ difficultyList[2] }}</p>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#' + recept.id">Részletek</a>
                 </div>
-                <a href="#" class="btn btn-primary" @click.prevent="showDetails(recept.id)">Részletek</a>
+
+                <div class="modal fade" :id="recept.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ recept.name }}</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {{ recept.description }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
         </div>
     </div>
 </template>
@@ -47,7 +67,7 @@ const getImgUrl = (img) => {
     margin: 20px 0px;
 }
 
-.card img{
+.card img {
     object-fit: cover;
 }
 
@@ -75,7 +95,8 @@ const getImgUrl = (img) => {
     border-radius: 7px;
     padding: 2px 4px;
 }
-.btn{
+
+.btn {
     margin-top: 20px;
 }
 </style>
