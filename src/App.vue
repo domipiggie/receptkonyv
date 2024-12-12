@@ -15,7 +15,9 @@ recipes.forEach((recipe)=>{
 
 var filteredRecipes = ref(recipeList.value);
 
+var prevSearchOptions = null;
 const search = (options) => {
+    prevSearchOptions = options;
     filteredRecipes.value = [];
 
     if (options.txt.trim().length < 3){
@@ -48,6 +50,15 @@ const order = (by) => {
         }
     })
 }
+
+const addRecipe = (data) => {
+    data.id = recipeList.value.length;
+    recipeList.value.push(new Recipe(data));
+
+    if (prevSearchOptions != null){
+        search(prevSearchOptions);
+    }
+}
 </script>
 
 <template>
@@ -65,7 +76,7 @@ const order = (by) => {
             <Card :recept="filteredRecipes"/>
         </section>
         <section>
-            <NewRecipe :receptlist="recipeList"/>
+            <NewRecipe @addRecipe="addRecipe"/>
         </section>
     </main>
     <footer>

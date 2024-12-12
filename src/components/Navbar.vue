@@ -13,7 +13,7 @@
                 <a class="nav-link" href="#">Receptek</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Új receptek</a>
+                <a class="nav-link" data-bs-toggle="modal" data-bs-target='#addRecipe'>Új receptek</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Kedvencek</a>
