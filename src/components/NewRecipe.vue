@@ -10,7 +10,7 @@ const description = ref("");
 const emits = defineEmits(['addRecipe']);
 
 const addRecipe = () => {
-    if (name.value == "" || prepTime.value == "" || description.value == ""){
+    if (name.value == "" || prepTime.value == "" || description.value == "" || difficulty.value == ""){
         alert("Töltse ki az összes mezőt!");
         return;
     }
@@ -26,6 +26,8 @@ const addRecipe = () => {
         difficulty: Number(difficulty.value),
         description: description.value
     }
+
+    name.value = prepTime.value = difficulty.value = description.value = "";
 
     emits('addRecipe', data);
 }
@@ -51,7 +53,8 @@ const addRecipe = () => {
                             </div>
                             <div class="form-group col">
                                 <select id="newrecipedifficulty" class="form-control" v-model="difficulty">
-                                    <option value="0" selected>Könnyű</option>
+                                    <option value="" selected>Kérem válasszon...</option>
+                                    <option value="0">Könnyű</option>
                                     <option value="1">Közepes</option>
                                     <option value="2">Nehéz</option>
                                 </select>
