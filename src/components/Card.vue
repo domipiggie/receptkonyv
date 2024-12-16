@@ -36,7 +36,9 @@ const getImgUrl = (img) => {
                             <p class="card-text d3" v-if="recept.difficulty == 2">{{ difficultyList[2] }}</p>
                         </div>
                     </div>
-                    <a class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#' + recept.id">Részletek</a>
+                    <div>
+                        <a class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#' + recept.id">Részletek</a>
+                    </div>
                 </div>
 
                 <Details :recept="recept"></Details>
@@ -61,26 +63,23 @@ const getImgUrl = (img) => {
 
 .d1 {
     background-color: #00ff00;
-    border-radius: 7px;
-    padding: 2px 4px;
-    display: inline;
 }
 
 .d2 {
     background-color: #ffff00;
-    display: inline;
-    border-radius: 7px;
-    padding: 2px 4px;
 }
 
 .d3 {
     background-color: #ff0000;
-    display: inline;
+}
+
+.d1, .d2, .d3{
     border-radius: 7px;
     padding: 2px 4px;
+    display: inline;
 }
 
 .btn {
-    margin-top: 20px;
+    margin: 0px 0px 20px 16px;
 }
 </style>

@@ -44,6 +44,7 @@ watchEffect(()=>{
 <style scoped>
     form{
         display: flex;
+        margin-right: 60px;
     }
     .fe{
         margin: 10px 10px;
