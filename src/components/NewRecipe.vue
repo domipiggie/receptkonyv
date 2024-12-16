@@ -6,11 +6,12 @@ const name = ref("");
 const prepTime = ref("");
 const difficulty = ref("0")
 const description = ref("");
+const newrecipeurl = ref("");
 
 const emits = defineEmits(['addRecipe']);
 
 const addRecipe = () => {
-    if (name.value == "" || prepTime.value == "" || description.value == "" || difficulty.value == ""){
+    if (name.value == "" || prepTime.value == "" || description.value == "" || difficulty.value == "" || newrecipeurl.value == ""){
         alert("Töltse ki az összes mezőt!");
         return;
     }
@@ -24,10 +25,11 @@ const addRecipe = () => {
         name: name.value,
         prepTime: Number(prepTime.value),
         difficulty: Number(difficulty.value),
-        description: description.value
+        description: description.value,
+        img: newrecipeurl.value
     }
 
-    name.value = prepTime.value = difficulty.value = description.value = "";
+    name.value = prepTime.value = difficulty.value = description.value = newrecipeurl.value = "";
 
     emits('addRecipe', data);
 }
@@ -62,6 +64,9 @@ const addRecipe = () => {
                             <div class="form-group">
                                 <textarea class="form-control" id="newrecipedescription" rows="3"
                                     placeholder="Leírás...." v-model="description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Kép link: (https://....)" v-model="newrecipeurl">
                             </div>
                         </div>
                     </form>
