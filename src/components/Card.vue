@@ -24,8 +24,8 @@ const getImgUrl = (img) => {
 <template>
     <div class="container">
         <div class="row">
-            <div v-for="recept in recept" class="col-4 cards">
-                <div class="card" style="width: 18rem;">
+            <div v-for="recept in recept" class="col-sm-4 col-12 cards">
+                <div class="card">
                     <img class="card-img-top" :src="getImgUrl(recept.img)" width="300" height="200">
                     <div class="card-body">
                         <h5 class="card-title">{{ recept.name }}</h5>
